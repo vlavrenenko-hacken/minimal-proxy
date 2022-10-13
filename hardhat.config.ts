@@ -6,8 +6,21 @@ import "hardhat-gas-reporter"
 
 dotenv.config();
 
+const settings = {
+  optimizer: {
+    enabled: true,
+    runs: 200,
+  },
+};
+
+
 const config: HardhatUserConfig = {
-  solidity: "0.8.13",
+  solidity: {
+    compilers: [
+      { version: '0.5.16', settings },
+      { version: '0.6.12', settings }
+    ]
+  },
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,
     currency: "USD",
